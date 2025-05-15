@@ -1,22 +1,39 @@
 #include <iostream>
+#include "rang.h"
 #include "det.h"
 
 using namespace std;
 
-const int rows = 1000;
+const int mxN = 1000;
+
+extern int row[mxN + 1], col[mxN + 1];
+
+int **mat = new int *[mxN + 1];
 
 int main()
 {
-    int n;
-    int **mat = new int *[rows + 1];
-    for (int i = 1; i <= rows; i++)
-        mat[i] = new int[rows];
+    int n, m, rangMaxim;
+    for (int i = 1; i <= mxN; i++)
+        mat[i] = new int[mxN];
 
-    cin >> n;
+    cin >> n >> m;
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= n; j++)
             cin >> mat[i][j];
 
-    cout << det(n, mat);
+    rangMaxim = rangMatrix(n, m);
+    cout << rangMaxim << "\n";
+
+    for (int i = 1; i <= rangMaxim; i++)
+    {
+        cout << row[i] << " ";
+    }
+    cout << "\n";
+
+    for (int i = 1; i <= rangMaxim; i++)
+    {
+        cout << row[i] << " ";
+    }
+    cout << "\n";
     return 0;
 }

@@ -6,7 +6,10 @@ int perm[mxN + 1];
 long long ans = 0;
 bool folosit[mxN + 1];
 
-int sign(int n)
+int **matrix = nullptr;
+int n;
+
+int sign()
 {
     int tot = 0;
     for (int i = 2; i <= n; i++)
@@ -19,20 +22,20 @@ int sign(int n)
     return -1;
 }
 
-void lineVal(int n, int **mat)
+void lineVal()
 {
     int aux = 1;
     for (int i = 1; i <= n; i++)
-        aux *= mat[i][perm[i]];
+        aux *= matrix[i][perm[i]];
 
-    ans += sign(n) * aux;
+    ans += sign() * aux;
 }
 
-void calcPerm(int pas, int n, int **mat)
+void calcPerm(int pas)
 {
     if (pas >= n)
     {
-        lineVal(n, mat);
+        lineVal();
         return;
     }
 
@@ -44,15 +47,28 @@ void calcPerm(int pas, int n, int **mat)
         folosit[i] = true;
         perm[pas + 1] = i;
 
-        calcPerm(pas + 1, n, mat);
+        calcPerm(pas + 1);
 
         folosit[i] = false;
     }
 }
 
-long long det(int n, int **mat)
+void init()
 {
-    calcPerm(0, n, mat);
+    ans = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        perm[i] = 0;
+        folosit[i] = false;
+    }
+}
+
+long long det(int nAux, int **m)
+{
+    init();
+    n = nAux;
+    matrix = m;
+    calcPerm(0);
 
     return ans;
 }

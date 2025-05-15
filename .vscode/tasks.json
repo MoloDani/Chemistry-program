@@ -7,13 +7,14 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "main.cpp",
                 "det.cpp",
+                "rang.cpp",
+                "main.cpp",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${workspaceFolder}/main.exe"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+            "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"
