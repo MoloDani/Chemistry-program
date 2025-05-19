@@ -1,13 +1,12 @@
 #include "det.h"
-
-const int mxN = 1000;
+#include "config.h"
 
 int perm[mxN + 1];
 long long ans = 0;
 bool folosit[mxN + 1];
 
 int **matrix = nullptr;
-int n;
+static int n;
 
 int sign()
 {

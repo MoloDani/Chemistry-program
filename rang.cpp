@@ -1,13 +1,12 @@
 #include "rang.h"
 #include "det.h"
+#include "config.h"
 #include <iostream>
-
-const int mxN = 1000;
 
 extern int **mat;
 
 int **matAns = new int *[mxN + 1];
-int row[mxN + 1], col[mxN + 1];
+int *row = new int[mxN], *col = new int[mxN];
 
 void selectionInsert(int *v, int n, int val)
 {
@@ -57,7 +56,7 @@ int rangMatrix(int n, int m)
     bool searching, finished = false;
     int rangMax = (n < m ? n : m);
 
-    for (rang = 0; rang <= rangMax && !finished; rang++)
+    for (rang = 0; rang < rangMax && !finished; rang++)
     {
         searching = true;
         for (int i = 1; i <= n && searching; i++)
@@ -80,8 +79,10 @@ int rangMatrix(int n, int m)
         }
 
         if (searching)
-            finished = true;
+        {
+            return rang;
+        }
     }
 
-    return rang - 1;
+    return rang;
 }
