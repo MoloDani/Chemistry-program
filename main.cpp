@@ -3,6 +3,7 @@
 #include "det.h"
 #include "solution.h"
 #include "config.h"
+#include "input.h"
 
 using namespace std;
 
@@ -16,19 +17,20 @@ extern **matAns;
 
 int main()
 {
-    for (int i = 1; i <= mxN; i++)
-        mat[i] = new int[mxN];
+    input();
+    // for (int i = 1; i <= mxN; i++)
+    //     mat[i] = new int[mxN];
 
-    cin >> n >> m;
-    for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= m; j++)
-            cin >> mat[i][j];
+    // cin >> n >> m;
+    // for (int i = 1; i <= n; i++)
+    //     for (int j = 1; j <= m; j++)
+    //         cin >> mat[i][j];
 
-    rangMaxim = rangMatrix(n, m);
+    // rangMaxim = rangMatrix(n, m);
 
-    int *ans = solution();
+    // int *ans = solution();
 
-    cout << "\n";
-    for (int i = 1; i <= m; i++)
-        cout << ans[i] << " ";
+    // cout << "\n";
+    // for (int i = 1; i <= m; i++)
+    //     cout << ans[i] << " ";
 }

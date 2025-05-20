@@ -11,6 +11,7 @@
                 "rang.cpp",
                 "main.cpp",
                 "solution.cpp",
+                "input.cpp",
                 "-o",
                 "${workspaceFolder}/main.exe"
             ],
