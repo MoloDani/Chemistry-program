@@ -1,5 +1,6 @@
 #include <iostream>
 #include "input.h"
+#include <map>
 
 extern **mat;
 
@@ -12,14 +13,17 @@ char ecuation[mxC];
 
 bool iCanContinue(int i)
 {
+    if (ecuation[i] == ' ')
+        return true;
     return (ecuation[i] != '+' && ecuation[i] != '=');
 }
 
 void input()
 {
     int ind = 1, l = 1;
+    bool inFirstPart = true;
     std::cout << "Introdu ecuația pe care vrei sa o egalez: ";
-    std::cin >> ecuation;
+    std::cin.getline(ecuation, mxC - 1);
 
     while (ecuation[ind] != '\0')
     {
@@ -28,12 +32,21 @@ void input()
             l++, ind++;
 
         noElem++;
+        firstPart[noElem] = inFirstPart;
         for (int i = ind - l; i < ind; i++)
+        {
+            if (ecuation[i] == ' ')
+                continue;
             elements[noElem][aux++] = ecuation[i];
+        }
+
+        if (ecuation[ind] == '=')
+            inFirstPart = false;
         ind++;
         l = 0;
     }
 
     for (int i = 1; i <= noElem; i++)
-        std::cout << elements[i] << "\n";
+        if (true)
+            std::cout << elements[i] << "\n";
 }
