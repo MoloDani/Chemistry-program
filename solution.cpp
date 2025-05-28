@@ -8,15 +8,15 @@ extern int n, m, rangMaxim, **mat, *row, *col, **matAns;
 
 int determinant, **auxMat = new int *[mxN + 1], coef[mxN];
 
-int solve(int collumn, int rang)
+fraction solve(int collumn, int rang)
 {
-    int auxAns;
+    fraction auxAns;
     for (int i = 1; i <= rang; i++)
         auxMat[i][collumn] = coef[row[i]];
 
     // TO DO: implement solution as a fraction
     // TO DO: before showing, find the common numetaor for all the numbers in answers and multiply by that. than change the answers so no number is a fraction
-    auxAns = det(rang, auxMat) / determinant;
+    auxAns = {det(rang, auxMat), determinant};
 
     for (int i = 1; i <= rang; i++)
         auxMat[i][collumn] = matAns[i][collumn];
@@ -32,9 +32,10 @@ bool isInCol(int j)
     return false;
 }
 
-int *solution()
+fraction *solution()
 {
-    int *ansMat = new int[mxN + 1], ind;
+    fraction *ansMat = new fraction[mxN + 1];
+    int ind;
     for (int i = 1; i <= mxN; i++)
         auxMat[i] = new int[mxN];
     for (int i = 1; i <= rangMaxim; i++)

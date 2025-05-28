@@ -2,6 +2,7 @@
 #define FRACTION_H
 
 #include <iostream>
+#include "det.h"
 
 struct fraction
 {

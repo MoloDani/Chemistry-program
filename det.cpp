@@ -62,7 +62,7 @@ void init()
     }
 }
 
-long long det(int nAux, int **m)
+int det(int nAux, int **m)
 {
     init();
     n = nAux;
