@@ -4,6 +4,7 @@
 #include "solution.h"
 #include "config.h"
 #include "input.h"
+#include "fraction.h"
 
 using namespace std;
 
@@ -18,8 +19,8 @@ extern **matAns;
 int main()
 {
     input();
-    // for (int i = 1; i <= mxN; i++)
-    //     mat[i] = new int[mxN];
+    //   for (int i = 1; i <= mxN; i++)
+    //       mat[i] = new int[mxN];
 
     // cin >> n >> m;
     // for (int i = 1; i <= n; i++)

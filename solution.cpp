@@ -1,8 +1,8 @@
 #include "solution.h"
 #include "rang.h"
 #include "det.h"
-#include <iostream>
 #include "config.h"
+#include "fraction.h"
 
 extern int n, m, rangMaxim, **mat, *row, *col, **matAns;
 
