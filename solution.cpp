@@ -14,8 +14,6 @@ fraction solve(int collumn, int rang)
     for (int i = 1; i <= rang; i++)
         auxMat[i][collumn] = coef[row[i]];
 
-    // TO DO: implement solution as a fraction
-    // TO DO: before showing, find the common numetaor for all the numbers in answers and multiply by that. than change the answers so no number is a fraction
     auxAns = {det(rang, auxMat), determinant};
 
     for (int i = 1; i <= rang; i++)
@@ -71,6 +69,8 @@ fraction *solution()
     {
         ansMat[col[i]] = solve(col[i], rangMaxim);
     }
+
+    // TO DO: make ansMat have only natural numbers(gcd the denominators, etc)
 
     return ansMat;
 }
