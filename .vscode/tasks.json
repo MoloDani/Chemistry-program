@@ -12,6 +12,7 @@
                 "main.cpp",
                 "solution.cpp",
                 "input.cpp",
+                "translateProb.cpp",
                 "-o",
                 "${workspaceFolder}/main.exe"
             ],
