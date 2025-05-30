@@ -1,5 +1,7 @@
 #include "translateProb.h"
+#include "config.h"
 #include <iostream>
+#include <map>
 
 struct elGr
 {
@@ -12,6 +14,11 @@ extern int noElem;
 
 extern **mat;
 int indexElem;
+
+char diffEl[mxN][3];
+int noDifElem = 0;
+
+std::map<char *, int> coefElemSubst[mxN];
 
 elGr computeElem(int ind)
 {
@@ -31,6 +38,34 @@ elGr computeElem(int ind)
     return elGr{elem, coeficient};
 }
 
+bool existingElement(char *el)
+{
+    bool exista = false;
+    for (int i = 1; i <= noDifElem; i++)
+    {
+        if (el[0] == diffEl[i][0])
+        {
+            if (el[1] == '\0')
+                return true;
+
+            if (el[1] == diffEl[i][1])
+                return true;
+        }
+    }
+
+    return false;
+}
+
+void addElement(char *el)
+{
+    noDifElem++;
+    int j;
+    for (j = 0; j <= 2 && el[j] != '\0'; j++)
+        diffEl[noDifElem][j] = el[j];
+
+    diffEl[noDifElem][j] = '\0';
+}
+
 void translate()
 {
     for (int i = 1; i <= noElem; i++)
@@ -39,9 +74,17 @@ void translate()
         while (elements[i][indexElem] != '\0')
         {
             elGr aux = computeElem(i);
-            std::cout << aux.el << " " << aux.coef << "\n";
-        }
+            coefElemSubst[i][aux.el] = aux.coef;
 
+            if (!existingElement(aux.el))
+                addElement(aux.el);
+        }
+    }
+
+    for (int i = 1; i <= noElem; i++)
+    {
+        for (auto x : coefElemSubst[i])
+            std::cout << x.first << " ";
         std::cout << "\n";
     }
 }

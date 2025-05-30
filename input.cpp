@@ -32,7 +32,7 @@ void input()
     for (int i = 1; i <= 100; i++)
         elements[i] = new char[mxC];
     int ind = 1, l = 1;
-    bool inFirstPart = true;
+    int inFirstPart = 1;
     std::cout << "Introdu ecuația pe care vrei sa o egalez: ";
     std::cin.getline(ecuation, mxC - 1);
 
@@ -53,7 +53,7 @@ void input()
         elements[noElem][aux] = '\0';
 
         if (ecuation[ind] == '=')
-            inFirstPart = false;
+            inFirstPart = -1;
         ind++;
         l = 0;
     }
