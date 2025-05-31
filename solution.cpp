@@ -3,6 +3,7 @@
 #include "det.h"
 #include "config.h"
 #include "fraction.h"
+#include <iostream>
 
 extern int n, m, rangMaxim, **mat, *row, *col, **matAns;
 
@@ -68,6 +69,7 @@ fraction *solution()
     for (int i = 1; i <= rangMaxim; i++)
     {
         ansMat[col[i]] = solve(col[i], rangMaxim);
+        std::cout << ansMat[col[i]];
     }
 
     // TO DO: make ansMat have only natural numbers(gcd the denominators, etc)

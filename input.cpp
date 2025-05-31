@@ -1,6 +1,7 @@
 #include <iostream>
 #include "input.h"
 #include "translateProb.h"
+#include "config.h"
 #include <map>
 
 extern **mat;
@@ -8,7 +9,7 @@ extern **mat;
 const int mxC = 100001;
 
 char **elements = new char *[100];
-bool firstPart[mxC];
+int *firstPart = new int[mxN];
 int noElem = 0;
 char ecuation[mxC];
 

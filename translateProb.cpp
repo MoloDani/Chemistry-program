@@ -10,7 +10,7 @@ struct elGr
 };
 
 extern char **elements;
-extern int noElem;
+extern int noElem, *firstPart, n, m;
 
 extern **mat;
 int indexElem;
@@ -18,7 +18,14 @@ int indexElem;
 char diffEl[mxN][3];
 int noDifElem = 0;
 
-std::map<char *, int> coefElemSubst[mxN];
+std::map<int, int> coefElemSubst[mxN];
+
+int toKey(char *el)
+{
+    if (el[1] == '\0')
+        return el[0] * 100;
+    return el[0] * 100 + el[1];
+}
 
 elGr computeElem(int ind)
 {
@@ -74,7 +81,10 @@ void translate()
         while (elements[i][indexElem] != '\0')
         {
             elGr aux = computeElem(i);
-            coefElemSubst[i][aux.el] = aux.coef;
+            if (firstPart[i] == 1)
+                coefElemSubst[i][toKey(aux.el)] = aux.coef;
+            else
+                coefElemSubst[i][toKey(aux.el)] = -aux.coef;
 
             if (!existingElement(aux.el))
                 addElement(aux.el);
@@ -82,9 +92,9 @@ void translate()
     }
 
     for (int i = 1; i <= noElem; i++)
-    {
-        for (auto x : coefElemSubst[i])
-            std::cout << x.first << " ";
-        std::cout << "\n";
-    }
+        for (int j = 1; j <= noDifElem; j++)
+            mat[j][i] = coefElemSubst[i][toKey(diffEl[j])];
+
+    n = noDifElem;
+    m = noElem;
 }

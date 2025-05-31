@@ -18,9 +18,11 @@ extern **matAns;
 
 int main()
 {
+    for (int i = 1; i <= mxN; i++)
+        mat[i] = new int[mxN];
     input();
-    //   for (int i = 1; i <= mxN; i++)
-    //       mat[i] = new int[mxN];
+
+    solution();
 
     // cin >> n >> m;
     // for (int i = 1; i <= n; i++)
