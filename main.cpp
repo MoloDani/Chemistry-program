@@ -9,7 +9,6 @@
 using namespace std;
 
 int **mat = new int *[mxN + 1];
-int rangMaxim;
 int n, m;
 
 extern *row, *col;

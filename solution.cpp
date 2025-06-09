@@ -5,7 +5,7 @@
 #include "fraction.h"
 #include <iostream>
 
-extern int n, m, rangMaxim, **mat, *row, *col, **matAns;
+extern int n, m, **mat, *row, *col, **matAns;
 
 int determinant, **auxMat = new int *[mxN + 1], coef[mxN];
 
@@ -18,12 +18,12 @@ fraction solve(int collumn, int rang)
     auxAns = {det(rang, auxMat), determinant};
 
     for (int i = 1; i <= rang; i++)
-        auxMat[i][collumn] = matAns[i][collumn];
+        auxMat[i][collumn] = matAns[row[i]][col[collumn]];
 
     return auxAns;
 }
 
-bool isInCol(int j)
+bool isInCol(int j, int rangMaxim)
 {
     for (int i = 1; i <= rangMaxim; i++)
         if (col[i] == j)
@@ -34,12 +34,18 @@ bool isInCol(int j)
 fraction *solution()
 {
     fraction *ansMat = new fraction[mxN + 1];
-    int ind;
+    int ind, rangMaxim = rangMatrix(n, m);
     for (int i = 1; i <= mxN; i++)
         auxMat[i] = new int[mxN];
     for (int i = 1; i <= rangMaxim; i++)
         for (int j = 1; j <= rangMaxim; j++)
-            auxMat[i][j] = matAns[i][j];
+            auxMat[i][j] = mat[row[i]][col[j]];
+
+    // for(int i = 1; i <= rangMaxim; i++){
+    //     for(int j = 1; j <= rangMaxim; j++)
+    //         std::cout << auxMat[i][j] << " ";
+    //     std::cout << "\n";
+    // }
 
     if (m <= rangMaxim)
     {
@@ -54,7 +60,7 @@ fraction *solution()
         ind = 1;
         for (int j = 1; j <= m; j++)
         {
-            if (isInCol(j))
+            if (isInCol(j, rangMaxim))
                 ind++;
             else
             {
@@ -64,12 +70,16 @@ fraction *solution()
         }
     }
 
-    determinant = det(rangMaxim, matAns);
+    determinant = det(rangMaxim, auxMat);
 
     for (int i = 1; i <= rangMaxim; i++)
     {
         ansMat[col[i]] = solve(col[i], rangMaxim);
-        std::cout << ansMat[col[i]];
+    }
+
+    for (int i = 1; i <= m; i++)
+    {
+        std::cout << ansMat[i] << " ";
     }
 
     // TO DO: make ansMat have only natural numbers(gcd the denominators, etc)
