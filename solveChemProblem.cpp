@@ -6,12 +6,14 @@
 #include "config.h"
 #include <string.h>
 
-extern int noElem;
+extern int noElem, *firstPart;
 extern fraction *ansMat;
 extern std::map<int, int> coefElemSubst[mxN];
+extern char **elements;
 
 std::map<int, int> molarMass;
 int solMass[mxN + 1];
+double realMass[mxN];
 
 void initMolarMass()
 {
@@ -155,16 +157,46 @@ void solveChemProblem()
 {
     initMolarMass();
     int indKnown, quantity;
-    std::cout << "\nDin ce solutie stii cantitatea?";
+    std::cout << "Din ce solutie stii cantitatea?";
     std::cin >> indKnown;
     std::cout << "Cata solutie este?";
     std::cin >> quantity;
 
+    realMass[indKnown] = quantity;
+
     for (int i = 1; i <= noElem; i++)
     {
         calcMolarMass(i);
-        std::cout << solMass[i] << " ";
     }
 
     // TO DO: calculate the masses based on the chosen one
+
+    for (int i = 1; i <= noElem; i++)
+    {
+        if (i == indKnown)
+            continue;
+
+        realMass[i] = realMass[indKnown] * solMass[i] / solMass[indKnown];
+    }
+
+    std::cout << "\n";
+    for (int i = 1; i <= noElem; i++)
+        std::cout << solMass[i] << "   ";
+    std::cout << "\n";
+    for (int i = 1; i <= noElem; i++)
+    {
+        if (ansMat[i].numerator != 1)
+            std::cout << ansMat[i];
+        std::cout << elements[i];
+        if (i == noElem)
+            continue;
+
+        if (firstPart[i] != firstPart[i + 1] && firstPart[i + 1])
+            std::cout << " = ";
+        else
+            std::cout << " + ";
+    }
+    std::cout << "\n";
+    for (int i = 1; i <= noElem; i++)
+        std::cout << realMass[i] << "   ";
 }
