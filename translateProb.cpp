@@ -20,16 +20,17 @@ int noDifElem = 0;
 
 std::map<int, int> coefElemSubst[mxN];
 
-int toKey(char *el)
+int toKey(const char *el)
 {
     if (el[1] == '\0')
-        return el[0] * 100;
-    return el[0] * 100 + el[1];
+        return el[0] * 1000;
+    return el[0] * 1000 + el[1];
 }
 
 elGr computeElem(int ind)
 {
     // TO DO: verify if next character is another element
+    // TO DO: verify if
     char *elem = new char;
     int coeficient = 0, indAux = 0;
     while ((elements[ind][indexElem] >= 'a' && elements[ind][indexElem] <= 'z') || (elements[ind][indexElem] >= 'A' && elements[ind][indexElem] <= 'Z') && elements[ind][indexElem] != '\0')

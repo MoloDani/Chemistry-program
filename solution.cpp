@@ -5,9 +5,12 @@
 #include "fraction.h"
 #include <iostream>
 
-extern int n, m, **mat, *row, *col, **matAns;
+extern int n, m, **mat, *row, *col, **matAns, *firstPart;
+extern char **elements;
 
 int determinant, **auxMat = new int *[mxN + 1], coef[mxN];
+
+fraction *ansMat = new fraction[mxN + 1];
 
 fraction solve(int collumn, int rang)
 {
@@ -31,9 +34,8 @@ bool isInCol(int j, int rangMaxim)
     return false;
 }
 
-fraction *solution()
+void solution()
 {
-    fraction *ansMat = new fraction[mxN + 1];
     int ind, rangMaxim = rangMatrix(n, m);
     for (int i = 1; i <= mxN; i++)
         auxMat[i] = new int[mxN];
@@ -52,7 +54,7 @@ fraction *solution()
         std::cout << "Imposibil\n";
         for (int i = 1; i <= m; i++)
             ansMat[i] = 0;
-        return ansMat;
+        return;
     }
 
     for (int i = 1; i <= n; i++)
@@ -77,12 +79,31 @@ fraction *solution()
         ansMat[col[i]] = solve(col[i], rangMaxim);
     }
 
+    int auxCoef = 1;
+
     for (int i = 1; i <= m; i++)
     {
-        std::cout << ansMat[i] << " ";
+        auxCoef = auxCoef * ansMat[i].denominator / gcd(auxCoef, ansMat[i].denominator);
     }
 
-    // TO DO: make ansMat have only natural numbers(gcd the denominators, etc)
+    for (int i = 1; i <= m; i++)
+    {
+        ansMat[i] = ansMat[i] * auxCoef;
+    }
 
-    return ansMat;
+    for (int i = 1; i <= m; i++)
+    {
+        if (ansMat[i].numerator != 1)
+            std::cout << ansMat[i];
+        std::cout << elements[i];
+        if (i == m)
+            continue;
+
+        if (firstPart[i] != firstPart[i + 1] && firstPart[i + 1])
+            std::cout << " = ";
+        else
+            std::cout << " + ";
+    }
+
+    return;
 }

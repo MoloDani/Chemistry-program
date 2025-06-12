@@ -3,6 +3,6 @@
 
 #include "fraction.h"
 
-fraction *solution();
+void solution();
 
 #endif

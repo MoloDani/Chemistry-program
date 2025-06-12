@@ -5,8 +5,8 @@
 #include "config.h"
 #include "input.h"
 #include "fraction.h"
-
-using namespace std;
+#include "translateProb.h"
+#include "solveChemProblem.h"
 
 int **mat = new int *[mxN + 1];
 int n, m;
@@ -23,6 +23,8 @@ int main()
 
     solution();
 
+    solveChemProblem();
+
     // cin >> n >> m;
     // for (int i = 1; i <= n; i++)
     //     for (int j = 1; j <= m; j++)
@@ -35,4 +37,6 @@ int main()
     // cout << "\n";
     // for (int i = 1; i <= m; i++)
     //     cout << ans[i] << " ";
+
+    return 0;
 }

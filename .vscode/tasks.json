@@ -9,10 +9,11 @@
                 "-g",
                 "det.cpp",
                 "rang.cpp",
-                "main.cpp",
                 "solution.cpp",
                 "input.cpp",
                 "translateProb.cpp",
+                "solveChemProblem.cpp",
+                "main.cpp",
                 "-o",
                 "${workspaceFolder}/main.exe"
             ],

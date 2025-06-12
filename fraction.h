@@ -4,8 +4,9 @@
 #include <iostream>
 #include "det.h"
 
-struct fraction
+class fraction
 {
+public:
     int numerator, denominator; // up, down
     fraction()
     {

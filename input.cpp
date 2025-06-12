@@ -49,7 +49,7 @@ void input()
         {
             if (ecuation[i] == ' ')
                 continue;
-            elements[noElem][aux++] = toUpper(ecuation[i]);
+            elements[noElem][aux++] = ecuation[i];
         }
         elements[noElem][aux] = '\0';
 
