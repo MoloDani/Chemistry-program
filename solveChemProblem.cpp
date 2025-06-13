@@ -169,8 +169,6 @@ void solveChemProblem()
         calcMolarMass(i);
     }
 
-    // TO DO: calculate the masses based on the chosen one
-
     for (int i = 1; i <= noElem; i++)
     {
         if (i == indKnown)
@@ -178,6 +176,8 @@ void solveChemProblem()
 
         realMass[i] = realMass[indKnown] * solMass[i] / solMass[indKnown];
     }
+
+    // TO DO: calculate the answer in mols, liters...
 
     std::cout << "\n";
     for (int i = 1; i <= noElem; i++)
