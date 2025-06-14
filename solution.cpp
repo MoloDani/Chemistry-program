@@ -43,20 +43,12 @@ void solution()
         for (int j = 1; j <= rangMaxim; j++)
             auxMat[i][j] = mat[row[i]][col[j]];
 
-    for (int i = 1; i <= rangMaxim; i++)
-    {
-        for (int j = 1; j <= rangMaxim; j++)
-            std::cout << auxMat[i][j] << " ";
-        std::cout << "\n";
-    }
-
-    if (m <= rangMaxim)
-    {
-        std::cout << "Imposibil\n";
-        for (int i = 1; i <= m; i++)
-            ansMat[i] = 0;
-        return;
-    }
+    // for (int i = 1; i <= rangMaxim; i++)
+    // {
+    //     for (int j = 1; j <= rangMaxim; j++)
+    //         std::cout << auxMat[i][j] << " ";
+    //     std::cout << "\n";
+    // }
 
     for (int i = 1; i <= n; i++)
     {
